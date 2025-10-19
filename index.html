@@ -1,0 +1,340 @@
+<!-- Paste this entire block into Blogger's HTML editor -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Machine Learning Assignment — Yugal (B.Sc. APS)</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <!-- MathJax for formulas -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+
+  <style>
+    :root{
+      --accent:#0b6ef6;
+      --muted:#555;
+      --paper:#ffffff;
+      --card:#fafafa;
+      --mono: 'Courier New', Courier, monospace;
+      --serif: 'Georgia', serif;
+    }
+
+    body{
+      font-family: var(--serif);
+      background: #f4f6f8;
+      color: #111;
+      line-height:1.5;
+      padding: 28px;
+    }
+
+    .container{
+      max-width:900px;
+      margin:0 auto;
+      background:var(--paper);
+      border-radius:8px;
+      box-shadow: 0 6px 18px rgba(20,30,40,0.08);
+      padding:26px 34px;
+    }
+
+    header{
+      text-align:center;
+      margin-bottom:18px;
+    }
+    h1{margin:6px 0; font-size:22px; color:var(--accent);}
+    .meta{font-size:13px; color:var(--muted); margin-bottom:16px;}
+
+    .question{
+      margin:18px 0;
+      padding:14px 16px;
+      background:var(--card);
+      border-radius:6px;
+      border-left:4px solid var(--accent);
+    }
+    .qtitle{font-weight:700; font-size:16px; margin-bottom:8px;}
+    .steps{background:#fff; padding:10px; border-radius:6px; font-family:var(--mono); color:#111;}
+    .key{display:inline-block; background:var(--accent); color:#fff; padding:3px 8px; border-radius:4px; font-size:12px; margin-left:8px;}
+    .note{color:#7b7b7b; font-size:13px; margin-top:8px;}
+    .formula{background:#f7fbff; padding:8px; border-radius:6px; margin:8px 0; font-family:var(--mono); font-size:15px;}
+    table{border-collapse:collapse; margin-top:8px;}
+    td,th{border:1px solid #ddd; padding:8px; font-family:var(--mono);}
+    .small{font-size:13px; color:var(--muted);}
+
+    pre.code{
+      background:#0f1723; color:#e6f1ff; padding:10px; border-radius:6px; overflow:auto; font-family:var(--mono);
+      font-size:13px;
+    }
+
+    footer{margin-top:18px; font-size:13px; color:var(--muted); text-align:center;}
+    .underline{border-bottom:2px dashed #eee; padding-bottom:6px; margin-bottom:8px;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Machine Learning — Assignment (Q1–Q7)</h1>
+      <div class="meta">
+        Prepared by: <strong>Yugal</strong> — B.Sc. (Applied Physical Sciences) with Computer Science<br/>
+        Subject: Machine Learning (DSC17 / GE7c) — Shivaji College, University of Delhi
+      </div>
+    </header>
+
+    <!-- Q1 -->
+    <section class="question" id="q1">
+      <div class="qtitle">Q1. What is <u>dimensionality reduction</u>? Give two advantages.</div>
+
+      <div class="steps">
+        <strong>Definition:</strong><br/>
+        Dimensionality reduction = process of reducing the number of input variables (features) while retaining as much relevant information as possible.
+      </div>
+
+      <div class="formula">
+        Two advantages:
+        <ol>
+          <li><strong>Lower computational cost</strong> — fewer features → faster training & inference.</li>
+          <li><strong>Reduced overfitting & noise</strong> — removes irrelevant / redundant features improving generalization.</li>
+        </ol>
+      </div>
+
+      <div class="note">
+        <strong>Tools / methods:</strong> PCA (Principal Component Analysis), feature selection (filter/wrapper/embedded), t-SNE (visualization).<br/>
+        <strong>Keywords:</strong> variance preservation, eigenvectors, curse of dimensionality.
+      </div>
+    </section>
+
+    <!-- Q2 -->
+    <section class="question" id="q2">
+      <div class="qtitle">Q2. k-NN classification (k=3) — classify new instance (X1=5, X2=4)</div>
+
+      <div class="small">Given dataset:</div>
+      <table>
+        <tr><th>X1</th><th>X2</th><th>Y</th></tr>
+        <tr><td>2</td><td>3</td><td>No</td></tr>
+        <tr><td>3</td><td>3</td><td>Yes</td></tr>
+        <tr><td>6</td><td>5</td><td>Yes</td></tr>
+        <tr><td>7</td><td>8</td><td>No</td></tr>
+        <tr><td>8</td><td>9</td><td>Yes</td></tr>
+      </table>
+
+      <div class="qtitle" style="margin-top:10px; font-size:14px;">Step-by-step (Euclidean distance)</div>
+
+      <div class="formula">
+        Distance formula:
+        \[
+          d((x_1,x_2),(X_1,X_2)) = \sqrt{(x_1-X_1)^2 + (x_2-X_2)^2}
+        \]
+      </div>
+
+      <div class="steps">
+        Compute distances from (5,4):
+        <ul>
+          <li>to (2,3): \( \sqrt{(5-2)^2 + (4-3)^2} = \sqrt{9+1} = \sqrt{10} \approx 3.162\)</li>
+          <li>to (3,3): \( \sqrt{(5-3)^2 + (4-3)^2} = \sqrt{4+1} = \sqrt{5} \approx 2.236\)</li>
+          <li>to (6,5): \( \sqrt{(5-6)^2 + (4-5)^2} = \sqrt{1+1} = \sqrt{2} \approx 1.414\)</li>
+          <li>to (7,8): \( \sqrt{(5-7)^2 + (4-8)^2} = \sqrt{4+16} = \sqrt{20} \approx 4.472\)</li>
+          <li>to (8,9): \( \sqrt{(5-8)^2 + (4-9)^2} = \sqrt{9+25} = \sqrt{34} \approx 5.831\)</li>
+        </ul>
+
+        Three smallest distances: (6,5) — Yes (1.414), (3,3) — Yes (2.236), (2,3) — No (3.162).<br/>
+        <strong>Majority vote</strong> = Yes (2 out of 3) → <strong>Predicted class: Yes</strong>.
+      </div>
+
+      <div class="note">
+        <strong>Tip:</strong> Standardize features before KNN if features have different units/scales. Choose odd k to reduce ties.
+      </div>
+    </section>
+
+    <!-- Q3 -->
+    <section class="question" id="q3">
+      <div class="qtitle">Q3. Naïve Bayes: classify (X1=Red, X2=Large, X3=Full)</div>
+
+      <div class="small">Training data (5 rows):</div>
+      <table>
+        <tr><th>X1</th><th>X2</th><th>X3</th><th>Y</th></tr>
+        <tr><td>Red</td><td>Small</td><td>Half</td><td>No</td></tr>
+        <tr><td>Red</td><td>Large</td><td>Full</td><td>Yes</td></tr>
+        <tr><td>Blue</td><td>Small</td><td>Full</td><td>Yes</td></tr>
+        <tr><td>Red</td><td>Small</td><td>Full</td><td>Yes</td></tr>
+        <tr><td>Blue</td><td>Large</td><td>Half</td><td>No</td></tr>
+      </table>
+
+      <div class="qtitle" style="font-size:14px">Step-by-step (counts → probabilities)</div>
+
+      <div class="formula">
+        Priors: \(P(Y{=}Yes)=\frac{3}{5},\; P(Y{=}No)=\frac{2}{5}.\)
+      </div>
+
+      <div class="steps">
+        Conditional probabilities (from counts):
+
+        <strong>For Y = Yes (3 samples):</strong>
+        <ul>
+          <li>\(P(\text{X1=Red}\mid Yes)= 2/3\) (rows 2 & 4)</li>
+          <li>\(P(\text{X2=Large}\mid Yes)= 1/3\) (row 2)</li>
+          <li>\(P(\text{X3=Full}\mid Yes)= 3/3 = 1\)</li>
+        </ul>
+
+        <strong>For Y = No (2 samples):</strong>
+        <ul>
+          <li>\(P(\text{X1=Red}\mid No)= 1/2\)</li>
+          <li>\(P(\text{X2=Large}\mid No)= 1/2\)</li>
+          <li>\(P(\text{X3=Full}\mid No)= 0/2 = 0 \;(\text{zero count})\)</li>
+        </ul>
+
+        Posterior (unnormalized):
+        \[
+          \text{score}_{Yes} = P(Yes)\cdot P(Red|Yes)\cdot P(Large|Yes)\cdot P(Full|Yes)
+          = \frac{3}{5}\cdot\frac{2}{3}\cdot\frac{1}{3}\cdot 1 = \frac{2}{15}\approx 0.1333
+        \]
+        \[
+          \text{score}_{No} = P(No)\cdot P(Red|No)\cdot P(Large|No)\cdot P(Full|No) = \frac{2}{5}\cdot\frac12\cdot\frac12\cdot 0 = 0
+        \]
+
+        <strong>Decision:</strong> score\_Yes > score\_No → <strong>Class = Yes</strong>.
+      </div>
+
+      <div class="note">
+        <strong>Important:</strong> Zero likelihoods cause problems — apply <strong>Laplace smoothing (add-1)</strong> to avoid zeros (especially for small datasets).
+      </div>
+    </section>
+
+    <!-- Q4 -->
+    <section class="question" id="q4">
+      <div class="qtitle">Q4. Difference between <u>supervised</u> and <u>unsupervised</u> learning. Provide a real-world example for each.</div>
+
+      <div class="steps">
+        <strong>Supervised learning</strong>: learns mapping from inputs to outputs using <u>labeled</u> data.<br/>
+        <em>Example:</em> Spam detection (email text → spam / not spam). Tasks: classification, regression.<br/><br/>
+
+        <strong>Unsupervised learning</strong>: finds patterns in <u>unlabeled</u> data (no ground-truth labels).<br/>
+        <em>Example:</em> Customer segmentation using purchase behavior (clusters). Tasks: clustering, dimensionality reduction, anomaly detection.
+      </div>
+
+      <div class="note">
+        <strong>Keywords:</strong> labels, prediction vs discovery, clustering, PCA, anomaly detection.
+      </div>
+    </section>
+
+    <!-- Q5 -->
+    <section class="question" id="q5">
+      <div class="qtitle">Q5. Apply K-NN (k=3) to predict class for new point X=(A=3, B=6)</div>
+
+      <div class="small">Dataset:</div>
+      <table>
+        <tr><th>Feature A</th><th>Feature B</th><th>Class</th></tr>
+        <tr><td>5</td><td>8</td><td>Negative</td></tr>
+        <tr><td>6</td><td>5</td><td>Negative</td></tr>
+        <tr><td>2</td><td>3</td><td>Positive</td></tr>
+        <tr><td>1</td><td>4</td><td>Positive</td></tr>
+      </table>
+
+      <div class="qtitle" style="font-size:14px">Step-by-step distances (Euclidean)</div>
+
+      <div class="steps">
+        Compute distances to (3,6):
+        <ul>
+          <li>to (5,8): \( \sqrt{(3-5)^2 + (6-8)^2} = \sqrt{4+4} = \sqrt{8} \approx 2.828 \) — Negative</li>
+          <li>to (6,5): \( \sqrt{(3-6)^2 + (6-5)^2} = \sqrt{9+1} = \sqrt{10} \approx 3.162 \) — Negative</li>
+          <li>to (2,3): \( \sqrt{(3-2)^2 + (6-3)^2} = \sqrt{1+9} = \sqrt{10} \approx 3.162 \) — Positive</li>
+          <li>to (1,4): \( \sqrt{(3-1)^2 + (6-4)^2} = \sqrt{4+4} = \sqrt{8} \approx 2.828 \) — Positive</li>
+        </ul>
+
+        Sorted distances (ascending): 2.828 (5,8) Neg, 2.828 (1,4) Pos, 3.162 (6,5) Neg, 3.162 (2,3) Pos.
+
+        Choose k=3 → the three nearest include a tie for the 3rd distance (both 3.162). Depending on tie-break rule:
+
+        <strong>Common tie-breaks</strong>:
+        <ul>
+          <li>use label of the closest points by summed distance per class</li>
+          <li>use order or random tie-break (not recommended)</li>
+        </ul>
+
+        If tie-break chooses (6,5) as third neighbor → neighbors = [Neg, Pos, Neg] → Majority = Negative → <strong>Predict: Negative</strong>.
+
+        If tie-break chooses (2,3) → neighbors = [Neg, Pos, Pos] → Predict: Positive.
+
+        <strong>Recommendation:</strong> pick a consistent rule or increase k (e.g., k=5) to reduce tie sensitivity.
+      </div>
+    </section>
+
+    <!-- Q6 -->
+    <section class="question" id="q6">
+      <div class="qtitle">Q6. Define Naive Bayes & mathematical formulation. Enumerate key assumption.</div>
+
+      <div class="steps">
+        <strong>Definition:</strong> Naive Bayes is a probabilistic classifier using Bayes' theorem with the <u>naive</u> assumption that features are conditionally independent given the class.<br/>
+
+        <div class="formula">
+          Bayes formula for class \(c\) and features \(X=(x_1,\dots,x_n)\):
+          \[
+            P(c\mid X) = \frac{P(c)\,P(X\mid c)}{P(X)}
+            \quad\text{and with independence}\quad
+            P(X\mid c) = \prod_{i=1}^n P(x_i\mid c).
+          \]
+          For classification pick:
+          \[
+            \hat c = \arg\max_c \; P(c)\prod_{i=1}^n P(x_i\mid c).
+          \]
+        </div>
+
+        <strong>Key assumption:</strong> Conditional independence of features given the class (often false in real data, but classifier performs well in practice).<br/>
+        <strong>Variants:</strong> GaussianNB (continuous), MultinomialNB (counts), BernoulliNB (binary).
+      </div>
+    </section>
+
+    <!-- Q7 -->
+    <section class="question" id="q7">
+      <div class="qtitle">Q7. Ridge regression — effect of tuning parameter \(\lambda\)</div>
+
+      <div class="steps">
+        Ridge adds L2 penalty to OLS objective:
+        \[
+          \min_\beta \;\; \sum_{i}(y_i - X_i\beta)^2 + \lambda \sum_{j}\beta_j^2.
+        \]
+
+        <ul>
+          <li>If \(\lambda \to 0\) → penalty vanishes → Ridge → OLS solution (low bias, potentially high variance → may overfit).</li>
+          <li>If \(\lambda \to \infty\) → coefficients shrink towards 0 → model collapses to intercept-only (high bias, low variance → underfit).</li>
+        </ul>
+
+        <strong>Important:</strong> select \(\lambda\) by cross-validation (grid-search or regularization path).
+      </div>
+    </section>
+
+    <!-- Practicals & Tools -->
+    <section class="question" id="tools">
+      <div class="qtitle">Practicals & Tools (short notes)</div>
+
+      <div class="steps">
+        <strong>Software:</strong> Python (scikit-learn), R, MATLAB/Octave.<br/>
+        <strong>Datasets:</strong> UCI repository, data.gov.in.<br/>
+        <strong>Evaluation metrics:</strong> Regression → MSE, \(R^2\). Classification → accuracy, confusion matrix (TP, TN, FP, FN), precision, recall, specificity, F1-score, AUC.
+      </div>
+
+      <div style="margin-top:10px;">
+        <div class="small">Example Python (scikit-learn) snippets:</div>
+
+        <pre class="code"># k-NN (k=3)
+from sklearn.neighbors import KNeighborsClassifier
+knn = KNeighborsClassifier(n_neighbors=3)
+knn.fit(X_train, y_train)
+y_pred = knn.predict(X_test)
+
+# Naive Bayes (categorical -> CategoricalNB or MultinomialNB)
+from sklearn.naive_bayes import GaussianNB
+nb = GaussianNB()
+nb.fit(X_train, y_train)
+</pre>
+
+      </div>
+    </section>
+
+    <footer>
+      <div class="underline">Submission ready — concise & stepwise solutions for revision</div>
+      Submitted by: <strong>Yugal</strong> — B.Sc. (APS) with Computer Science.  
+      <div class="small">You can edit the "Submission Date" or add college header/logo above this line for printing.</div>
+    </footer>
+  </div>
+</body>
+</html>
